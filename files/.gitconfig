@@ -1,0 +1,32 @@
+[alias]
+	s = status
+	c = commit
+	co = checkout
+	ca = commit -a
+	d = difftool
+	m = mergetool
+  tree = log --graph --full-history --all --color --date=short --pretty=format:\"%Cred%x09%h %Creset%ad%Cblue%d %Creset %s %C(bold)(%an)%Creset\"
+  list = stash list --pretty=format:\"%Cred%gd: %Creset%s %Cblue(%cr)\"
+  unstage = reset --
+[user]
+	email = morriswchris@gmail.com
+	name = Chris Morris
+[color]
+	ui = true
+[core]
+	editor = vim
+[diff]
+	tool = diffmerge
+[difftool "diffmerge"]
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = diffmerge
+[mergetool "diffmerge"]
+	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	trustExitCode = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/

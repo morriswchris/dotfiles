@@ -1,0 +1,8 @@
+alias top="htop"
+alias blah='function _blah(){ echo "First: $1"; echo "Second: $2"; };_blah'
+alias cpmov='function _cpmov(){ scp $1 howe:/Volumes/EXT2TBPASS/Movies ; };_cpmov'
+alias cptv='function _cptv(){ scp $1 howe:/Volumes/EXT3TBPASS/TV_Shows/$2 ; };_cptv'
+alias stats="istats"
+alias speedtest="curl -s  https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
+alias cat=bat
+alias cl=clear

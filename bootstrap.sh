@@ -13,6 +13,8 @@ brew_taps=(
 
 brew_formulas=(
   'bat'
+  'curl --with-openssl'
+  'git'
   'heroku'
   'htop'
   'imgcat'
@@ -21,7 +23,23 @@ brew_formulas=(
   'tmux'
   'tree'
   'wget'
+  'vim --with-override-system-vi'
+  'zsh'
   'zsh-syntax-highlighting'
+)
+
+brew_cask_formulas=(
+ 'appcleaner'
+ 'atom'
+ 'docker'
+ 'google-chrome'
+ 'iterm'
+ 'spotify'
+ 'skype'
+ 'slack'
+ 'vlc'
+ 'virtualbox'
+
 )
 
 nodes=(
@@ -47,7 +65,7 @@ install_formulas () {
   do
     if brew info $package | grep "Not installed" > /dev/null; then
       printf "\e[0;32m       * Installing ${package}, please wait... \e[0m\n\n"
-      brew install $package
+      brew cask install $package
       echo
       echo
     else
@@ -56,6 +74,19 @@ install_formulas () {
   done
 }
 
+install_cask_formulas () {
+  for package in "${brew_cask_formulas[@]}"
+  do
+    if brew info $package | grep "Not installed" > /dev/null; then
+      printf "\e[0;32m       * Installing ${package}, please wait... \e[0m\n\n"
+      brew install $package
+      echo
+      echo
+    else
+      printf  "\e[0;32m       * ${package} is already installed. \n\e[0m"
+    fi
+  done
+}
 # Node.js Installation
 install_node () {
   if hash nodenv 2>/dev/null; then
@@ -152,11 +183,12 @@ else
     --> Installing homebrew taps"
   install_taps
   install_formulas
+  install_cask_formulas
 
-  cp /opt/$INSTALL_DIR/lib/shared/.bashrc $HOME/.bashrc
-  cp /opt/$INSTALL_DIR/lib/shared/.bash_profile $HOME/.bash_profile
-
-  source $HOME/.bash_profile
+#  cp /opt/$INSTALL_DIR/lib/shared/.bashrc $HOME/.bashrc
+#  cp /opt/$INSTALL_DIR/lib/shared/.bash_profile $HOME/.bash_profile
+  cp /opt/$INSTALL_DIR/files/.* $HOME/
+  source $HOME/.zshrc
   sleep 1
 
   install_node
@@ -165,8 +197,8 @@ else
   nodenv local ${nodes}
 
   if [ ! -d "/etc/resolver" ]; then
-    sudo mkdir -p /etc/resolver
-    sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/dev'
+    #sudo mkdir -p /etc/resolver
+    #sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/dev'
   fi
 
   osascript -e 'tell application "System Events" to log out'

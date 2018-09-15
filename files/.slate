@@ -1,0 +1,76 @@
+# This is the default .slate file.
+# If no ~/.slate file exists this is the file that will be used.
+
+#Config
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+config windowHintsWidth 50
+config windowHintsHeight 50
+config windowHintsDuration 10
+#config windowHintsOrder "persist"
+
+#Grid
+bind g:cmd grid padding:5 0:6,3
+
+#Alias Positions
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias middle move screenOriginX+(screenSizeX*0.10);screenOriginY+(screenSizeY*0.10) screenSizeX*0.80;screenSizeY*0.80
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+alias tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
+alias bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2
+alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
+alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
+alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+
+#Locations
+bind return:shift;alt ${full}
+bind k:shift;alt ${tophalf}
+bind j:shift;alt ${bottomhalf}
+bind h:shift;alt ${lefthalf}
+bind y:shift;alt ${bottomleft}
+bind u:shift;alt ${topleft}
+bind l:shift;alt ${righthalf}
+bind o:shift;alt ${bottomright}
+bind i:shift;alt ${topright}
+
+# Focus Bindings
+bind l:alt    focus right
+bind h:alt    focus left
+bind k:alt    focus up
+bind j:alt    focus down
+bind a:alt    focus behind
+bind s:alt    focus above
+bind d:alt    focus below
+
+#throws
+bind tab:shift;alt	throw next resize
+bind tab:alt sequence throw next | ${middle}
+
+#resize
+
+bind ]:alt resize +5% +0
+bind [:alt resize -5% +0
+bind [:alt,shift resize +0 +5%
+bind ]:alt;shift resize -0 -5%
+
+#Slate
+bind backslash:alt	relaunch
+bind u:alt undo
+#bind tab:cmd switch
+
+#Applications
+bind 1:alt focus 'Code'
+bind 2:alt focus 'iTerm2'
+bind 3:alt focus 'Google Chrome'
+bind 8:alt focus 'Slack'
+bind 0:alt focus 'Messages'
+bind 9:alt focus 'Finder'
+
+# Window Hints
+bind e:alt hint
