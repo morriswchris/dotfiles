@@ -14,6 +14,7 @@ brew_taps=(
 brew_formulas=(
   'bat'
   'curl --with-openssl'
+  'fzf'
   'git'
   'heroku'
   'htop'
@@ -37,13 +38,14 @@ brew_cask_formulas=(
  'spotify'
  'skype'
  'slack'
+ 'slate'
  'vlc'
  'virtualbox'
 
 )
 
 nodes=(
-  '6.10.1'
+  '8.9.0'
 )
 
 # Homebrew Tap Installation
@@ -103,7 +105,7 @@ install_node () {
       fi
     done
 
-    source $HOME/.bash_profile
+    source $SHELL -l
     sleep 1
 
     printf "\n\e[0;33m    Setting node.js v${nodes} as the default global version.\n\e[0m"
@@ -111,6 +113,13 @@ install_node () {
   fi
 }
 
+# Moing of dotfiles
+install_dotfiles () {
+  printf "\e[0;32m       * Installing dotfiles...\n\e[0m"
+  cp /opt/$INSTALL_DIR/files/.* $HOME/
+  source $HOME/.zshrc
+  sleep 1
+}
 ###############################################################################
 #                     >>>>> Begin Here <<<<<
 ###############################################################################
@@ -170,7 +179,9 @@ if hash brew 2>/dev/null; then
   nodenv local ${nodes}
   sleep 1
 
-  source $HOME/.bash_profile
+  install_dotfiles
+
+  source $HOME/.zshrc
   osascript -e 'tell application "System Events" to log out'
   builtin logout
 else
@@ -184,10 +195,7 @@ else
   install_taps
   install_formulas
   install_cask_formulas
-
-#  cp /opt/$INSTALL_DIR/lib/shared/.bashrc $HOME/.bashrc
-#  cp /opt/$INSTALL_DIR/lib/shared/.bash_profile $HOME/.bash_profile
-  cp /opt/$INSTALL_DIR/files/.* $HOME/
+  install_dotfiles
   source $HOME/.zshrc
   sleep 1
 
