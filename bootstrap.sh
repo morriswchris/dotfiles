@@ -113,8 +113,7 @@ install_node () {
 # Moing of dotfiles
 install_dotfiles () {
   printf "\e[0;32m       * Installing dotfiles...\n\e[0m"
-  mkdir $HOME/test/
-  cp /opt/$INSTALL_DIR/files/.* $HOME/test
+  cp /opt/$INSTALL_DIR/files/.* $HOME/
   source $HOME/.zshrc
   sleep 1
 }
