@@ -30,17 +30,14 @@ brew_formulas=(
 )
 
 brew_cask_formulas=(
- 'appcleaner'
- 'atom'
- 'docker'
- 'google-chrome'
- 'iterm'
- 'spotify'
- 'skype'
- 'slack'
- 'slate'
- 'vlc'
- 'virtualbox'
+  'docker'
+  'google-chrome'
+  'iterm'
+  'spotify'
+  'slack'
+  'slate'
+  'vlc'
+  'virtualbox'
 
 )
 
@@ -116,7 +113,8 @@ install_node () {
 # Moing of dotfiles
 install_dotfiles () {
   printf "\e[0;32m       * Installing dotfiles...\n\e[0m"
-  cp /opt/$INSTALL_DIR/files/.* $HOME/
+  mkdir $HOME/test/
+  cp /opt/$INSTALL_DIR/files/.* $HOME/test
   source $HOME/.zshrc
   sleep 1
 }
@@ -204,10 +202,10 @@ else
 
   nodenv local ${nodes}
 
-  if [ ! -d "/etc/resolver" ]; then
-    #sudo mkdir -p /etc/resolver
-    #sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/dev'
-  fi
+  # if [ ! -d "/etc/resolver" ]; then
+  #   #sudo mkdir -p /etc/resolver
+  #   #sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/dev'
+  # fi
 
   osascript -e 'tell application "System Events" to log out'
   builtin logout
