@@ -114,7 +114,6 @@ install_node () {
 install_dotfiles () {
   printf "\e[0;32m       * Installing dotfiles...\n\e[0m"
   cp /opt/$INSTALL_DIR/files/.* $HOME/
-  mv $HOME/vim_runtime $HOME/.vim_runtime
   source $HOME/.zshrc
   sleep 1
 }
