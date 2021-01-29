@@ -1,51 +1,64 @@
-# terminal - like Linux
-# ctrl + alt - t : open -na /Applications/Utilities/Terminal.app
-ctrl + alt - r : brew services restart chunkwm
-
+# toggle wm
+ctrl + alt - s : wm start
+ctrl + alt - a : wm stop
 # enter fullscreen mode for the focused container
-alt - f : chunkc tiling::window --toggle fullscreen
-ctrl + alt + cmd - m : chunkc tiling::window --toggle fullscreen
+ctrl + alt - f : yabai -m window --toggle zoom-fullscreen
 
 # change focus between tiling / floating windows
-shift + alt - space : chunkc tiling::window --toggle float
+# shift + alt - space : chunkc tiling::window --toggle float
+# Not supported
 
 # change layout of desktop
-alt - e : chunkc tiling::desktop --layout bsp
-alt - s : chunkc tiling::desktop --layout monocle
+alt - e : yabai -m config layout bsp
+alt - s : yabai -m config layout monocle
 
 # kill focused window
-shift + alt - q : chunkc tiling::window --close
+# shift + alt - q : chunkc tiling::window --close
+# Not supported
 
 # change focus
-alt - h : chunkc tiling::window --focus west
-alt - j : chunkc tiling::window --focus south
-alt - k : chunkc tiling::window --focus north
-alt - l : chunkc tiling::window --focus east
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
 
-alt - p : chunkc tiling::window --focus prev
-alt - n : chunkc tiling::window --focus next
+alt - p : yabai -m window --focus prev
+alt - n : yabai -m window --focus next
+
+# change monitor
+ctrl + alt - p  : yabai -m display --focus prev
+ctrl + alt - n  : yabai -m display --focus next
 
 # move focused window
-shift + alt - h : chunkc tiling::window --warp west
-shift + alt - j : chunkc tiling::window --warp south
-shift + alt - k : chunkc tiling::window --warp north
-shift + alt - l : chunkc tiling::window --warp east
+shift + alt - h : yabai -m window --warp west
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north
+shift + alt - l : yabai -m window --warp east
 
-# alt warp
-cmd + ctrl + alt - left : chunkc tiling::window --warp west
-cmd + ctrl + alt - down : chunkc tiling::window --warp south
-cmd + ctrl + alt - up : chunkc tiling::window --warp north
-cmd + ctrl + alt - right : chunkc tiling::window --warp east
-
-alt - r : chunkc tiling::desktop --rotate 90
+# alt - r : chunkc tiling::desktop --rotate 90
+# Not Supported
 
 # move focused container to workspace
-shift + alt - m : chunkc tiling::window --send-to-desktop $(chunkc get _last_active_desktop)
-shift + alt - p : chunkc tiling::window --send-to-desktop prev
-shift + alt - n : chunkc tiling::window --send-to-desktop next
-shift + alt - 1 : chunkc tiling::window --send-to-desktop 1
-shift + alt - 2 : chunkc tiling::window --send-to-desktop 2
-shift + alt - 3 : chunkc tiling::window --send-to-desktop 3
-shift + alt - 4 : chunkc tiling::window --send-to-desktop 4
-shift + alt - 5 : chunkc tiling::window --send-to-desktop 5
-shift + alt - 6 : chunkc tiling::window --send-to-desktop 6
+shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
+shift + alt - n : yabai -m window --space next; yabai -m space --focus next
+shift + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+shift + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+shift + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+shift + alt - 5 : yabai -m window --space 5; yabai -m space --focus 5
+shift + alt - 6 : yabai -m window --space 6; yabai -m space --focus 6
+
+# Resize
+# ctrl + shift - left 	: chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
+# ctrl + shift - down 	: chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge south
+# ctrl + shift - up 	: chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge north
+# ctrl + shift - right : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge east
+
+# alt + shift - right : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge west
+# alt + shift - down	 : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge south
+# alt + shift - up 	 : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge north
+# alt + shift - left  : chunkc tiling::window --use-temporary-ratio -0.1 --adjust-window-edge east
+
+# move focused container to monitor
+ctrl + alt + shift - p  : yabai -m window --display prev; yabai -m display --focus prev
+ctrl + alt + shift - n  : yabai -m window --display next; yabai -m display --focus next
