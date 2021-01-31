@@ -1,0 +1,16 @@
+#!/bin/bash
+
+case "$1" in
+        start)
+            /Applications/RDM.app/Contents/MacOS/SetResX -w 2048 -h 1280 -s 1.0
+            brew services start yabai
+            ;;
+         
+        stop)
+            /Applications/RDM.app/Contents/MacOS/SetResX -w 1440 -h 900 -s 2.0
+            brew services stop yabai
+            ;;
+        *)
+            echo $"Usage: $0 {start|stop}"
+            exit 1
+esac
