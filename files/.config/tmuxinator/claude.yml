@@ -1,0 +1,32 @@
+name: claude
+root: <%= ENV["PWD"] %>
+startup_window: main
+
+pre_window:
+  - export EDITOR=nvim
+  - tmux set-option -g main-pane-width 50%
+
+windows:
+  - main:
+      layout: main-vertical
+      panes:
+        - 
+          - clear
+          - claude
+        - 
+          - sleep 10
+          - hunk diff --watch
+        - clear
+  - usage:
+      layout: main-vertical
+      panes:
+        -
+          - clear
+          - openusage
+  - terminal:
+      layout: main-vertical
+      panes:
+        -
+          - clear
+        -
+          - clear
